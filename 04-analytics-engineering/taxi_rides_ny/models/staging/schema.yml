@@ -7,10 +7,12 @@ sources:
 
     tables: 
       - name: green_2019
+      - name: green_2020
       - name: yellow_2019
+      - name: yellow_2020
 
 models:
-  - name: stg_yellow_2019
+  - name: stg_yellow
     description: ""
     columns:
       - name: tripid
@@ -117,7 +119,7 @@ models:
         data_type: string
         description: ""
 
-  - name: stg_green_2019
+  - name: stg_green
     description: ""
     columns:
       - name: tripid
