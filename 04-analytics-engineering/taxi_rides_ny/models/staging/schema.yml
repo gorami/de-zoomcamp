@@ -6,10 +6,8 @@ sources:
     schema: airflow2025
 
     tables: 
-      - name: green_2019
-      - name: green_2020
-      - name: yellow_2019
-      - name: yellow_2020
+      - name: green_tripdata
+      - name: yellow_tripdata
 
 models:
   - name: stg_yellow

@@ -2,21 +2,10 @@
  
 with tripdata as 
 (
-/*  select *,
+  select *,
     row_number() over(partition by vendorid, tpep_pickup_datetime) as rn
-  from {{ source('staging','yellow_2019') }}
-  where vendorid is not null */
-
-    {% set years =  ['2019', '2020'] %}
-
-    {% for year in years %}
-    select 
-        *,
-        row_number() over(partition by vendorid, tpep_pickup_datetime) as rn
-    from {{ source('staging', 'yellow_' + year) }}
---    where vendorid is not null
-    {% if not loop.last -%} union all {%- endif %}
-    {% endfor %}
+  from {{ source('staging','yellow_tripdata') }}
+  where vendorid is not null 
 )
 select
    -- identifiers
