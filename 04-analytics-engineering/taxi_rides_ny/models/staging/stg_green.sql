@@ -6,16 +6,10 @@
 
 with tripdata as 
 (
-    {% set years =  ['2019', '2020'] %}
-
-    {% for year in years %}
-    select 
-        *,
-        row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
-    from {{ source('staging', 'green_' + year) }}
-    --where vendorid is not null
-    {% if not loop.last -%} union all {%- endif %}
-    {% endfor %}
+  select *,
+    row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
+  from {{ source('staging','green_tripdata') }}
+  where vendorid is not null 
 )
 select
     -- identifiers
