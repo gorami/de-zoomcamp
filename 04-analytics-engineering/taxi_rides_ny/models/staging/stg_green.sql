@@ -13,7 +13,7 @@ with tripdata as
         *,
         row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
     from {{ source('staging', 'green_' + year) }}
-    where vendorid is not null
+    --where vendorid is not null
     {% if not loop.last -%} union all {%- endif %}
     {% endfor %}
 )
