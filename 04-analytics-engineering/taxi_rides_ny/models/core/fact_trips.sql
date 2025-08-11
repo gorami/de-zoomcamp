@@ -49,7 +49,11 @@ select trips_unioned.tripid,
     trips_unioned.total_amount, 
     trips_unioned.payment_type, 
     trips_unioned.payment_type_description,
-    extract(quarter from trips_unioned.pickup_datetime) as trip_quarter
+    -- add dims for month, year, year_qtr and build`
+    extract(quarter from trips_unioned.pickup_datetime) as trip_quarter,
+    extract(year from trips_unioned.pickup_datetime) as trip_year,
+    extract(month from trips_unioned.pickup_datetime) as trip_month,
+    extract(year from trips_unioned.pickup_datetime) || '-Q' || extract(quarter from trips_unioned.pickup_datetime) as trip_year_quarter
 from trips_unioned
 inner join dim_zones as pickup_zone
 on trips_unioned.pickup_locationid = pickup_zone.locationid
