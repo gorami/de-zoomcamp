@@ -8,4 +8,3 @@ select distinct
         partition by trip_month, trip_year, pickup_locationid, dropoff_locationid
     ) p90
 from trips_data
-;
