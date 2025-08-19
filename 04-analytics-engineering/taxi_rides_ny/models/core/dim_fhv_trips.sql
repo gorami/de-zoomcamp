@@ -24,6 +24,7 @@ select fhv_tripdata.tripid,
     dropoff_zone.zone as dropoff_zone,  
     fhv_tripdata.pickup_datetime, 
     fhv_tripdata.dropoff_datetime,
+    TIMESTAMP_DIFF(dropoff_datetime, pickup_datetime, second) as trip_duration,
     extract(year from fhv_tripdata.pickup_datetime) as trip_year,
     extract(month from fhv_tripdata.pickup_datetime) as trip_month
 from fhv_tripdata
